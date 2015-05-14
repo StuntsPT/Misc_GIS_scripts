@@ -28,10 +28,11 @@ The rasterfile(s) can be globbed in the shell or provided one by one.
 
 ### Example usages:
 
+```bash
 python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/BioClim1.bil ~/GIS_data/BioClim2.bil
 
 python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/*.bil
-
+```
 
 ## License
 
