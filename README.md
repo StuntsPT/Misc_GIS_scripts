@@ -4,7 +4,7 @@ A place to store my scrpits involving GIS data
 ## layer_data_extractor.py
 
 Script to extract the values of a rasterfile in a list of provided coordinates.
-Requires a shapefile and rasterfiles
+Requires a shapefile and rasterfiles.
 
 ### Usage:
 
@@ -25,6 +25,7 @@ Ind.3   39.5677 -6.6573
 
 
 The rasterfile(s) can be globbed in the shell or provided one by one.
+The output is sent to STDOUT.
 
 ### Example usages:
 
