@@ -22,7 +22,8 @@ import numpy as np
 
 
 def get_value_from_point(rasterfile, pos):
-    """Get the value of a rasterfile on the coordinates 'pos'."""
+    """Open a rasterfile, read the data on the coordinates 'pos',
+	and return that value."""
     gisdata = gdal.Open(rasterfile)
     gt = gisdata.GetGeoTransform()
     data = gisdata.ReadAsArray().astype(np.float)
