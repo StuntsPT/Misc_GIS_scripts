@@ -35,6 +35,27 @@ python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/BioClim1.bil ~/GIS_dat
 python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/*.bil
 ```
 
+## Coords_to_Google_Earth.py
+
+This is a **very** dirty hackish script to get a coordinate file and produce a google earth input file with placemarks.
+
+### Usage:
+
+Format a csv with coordinates:
+
+```
+Sample name, Longitude, Latitude, Altitude
+```
+
+Just use the program like so:
+
+```bash
+python3 Coords_to_Google_Earth.py coords.csv new_file.kml
+```
+
+And you are good to go.
+
+
 ## License
 
 GPL V3
