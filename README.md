@@ -1,5 +1,5 @@
 # Misc_GIS_scripts
-A place to store my scrpits involving GIS data.
+A place to store my scripts involving GIS data.
 
 ## layer_data_extractor.py
 
@@ -24,7 +24,7 @@ Ind.3   39.5677 -6.6573
 ```
 
 
-The rasterfile(s) can be globbed in the shell or provided one by one.
+The rasterfile(s) can be globed in the shell or provided one by one.
 The output is sent to STDOUT.
 
 ### Example usages:
@@ -35,9 +35,13 @@ python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/BioClim1.bil ~/GIS_dat
 python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/*.bil
 ```
 
+### Requirements:
+
+This script requires the package [python-gdal](https://pypi.python.org/pypi/GDAL/) to work.
+
 ## Coords_to_Google_Earth.py
 
-This is a **very** dirty hackish script to get a coordinate file and produce a google earth input file with placemarks.
+This is a **very** dirty hackish script to get a coordinate file and produce a Google Earth input file with place-marks.
 
 ### Usage:
 
