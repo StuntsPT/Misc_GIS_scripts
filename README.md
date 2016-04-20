@@ -59,6 +59,23 @@ python3 Coords_to_Google_Earth.py coords.csv new_file.kml
 
 And you are good to go.
 
+## simple_coordinate_converter.py
+
+This script will convert a csv file wing tabs as separators with DMS coordinates into decimal coordinates. It outputs to STDOUT.
+
+### Usage:
+
+Format a csv with DMS coordinates:
+
+```
+Sample name, Latitude, Longitude
+```
+
+```bash
+python3 python3 simpe_coordinate_converter.py coords.csv > output_file.csv
+```
+
+That's really all there is to it...
 
 ## License
 
