@@ -45,7 +45,8 @@ def main(coords_filename):
     STDOUT. Assumes a header, tab delimiters and the order "ID LAT LON".
     """
     infile = open(coords_filename, 'r')
-    infile.readline() # Skip header
+    header = infile.readline() # Skip header
+    print(header, end="")
     for lines in infile:
         data = lines.split()
         label = data[0]
