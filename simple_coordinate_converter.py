@@ -32,7 +32,7 @@ def dms2dd(degrees, minutes, seconds, direction):
 
 
 def parse_dms(dms):
-    parts = re.split('[^\dESNW]+', dms)
+    parts = re.split('[^\dESNW.]+', dms)
     lat = dms2dd(parts[0], parts[1], parts[2], parts[3])
     lng = dms2dd(parts[4], parts[5], parts[6], parts[7])
 
@@ -48,7 +48,9 @@ def main(coords_filename):
     header = infile.readline() # Skip header
     print(header, end="")
     for lines in infile:
-        data = lines.split()
+        if "N/A" in lines:
+            continue
+        data = lines.split("\t")
         label = data[0]
         decdeg = parse_dms("\t".join(data[1:]))
         print(label + "\t" + "\t".join(decdeg))
