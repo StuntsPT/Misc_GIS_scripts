@@ -72,7 +72,7 @@ Sample name, Latitude, Longitude
 ```
 
 ```bash
-python3 python3 simpe_coordinate_converter.py coords.csv > output_file.csv
+python3 simpe_coordinate_converter.py coords.csv > output_file.csv
 ```
 
 That's really all there is to it...
