@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright 2015 Francisco Pina Martins <f.pinamartins@gmail.com>
+# Copyright 2015-2018 Francisco Pina Martins <f.pinamartins@gmail.com>
 # This file is part of layer_data_extractor.
 # layer_data_extractor is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,31 +15,31 @@
 # You should have received a copy of the GNU General Public License
 # along with layer_data_extractor. If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division
-from osgeo import gdal
 from collections import OrderedDict
-import numpy as np
+from osgeo import gdal
 
 
-def get_value_from_point(rasterfile, pos):
-    """Open a rasterfile, read the data on the coordinates 'pos',
-	and return that value."""
+def get_value_from_point(rasterfile, coords):
+    """
+    Open a rasterfile, read the data on the coordinates 'pos',
+    and return that value.
+    """
     gisdata = gdal.Open(rasterfile)
-    gt = gisdata.GetGeoTransform()
-    data = gisdata.ReadAsArray().astype(np.float)
+    trnsf = gisdata.GetGeoTransform()
+    data = gisdata.GetRasterBand(1)
 
-    gisdata = None
+    for sample, crds in coords.items():
+        x_coord = int((crds[0] - trnsf[0]) / trnsf[1])
+        y_coord = int((crds[1] - trnsf[3]) / trnsf[5])
 
-    x = int((pos[0] - gt[0])/gt[1])
-    y = int((pos[1] - gt[3])/gt[5])
-
-    return data[y, x]
+        intval = data.ReadAsArray(x_coord, y_coord, 1, 1)
+        print('{}\t{}'.format(sample, intval[0][0]))
 
 
 def read_shapefile(shapefile_name):
     """Read the shapefile and return an OrderedDict {LABEL: (LON, LAT)}."""
     shapes = open(shapefile_name, 'r')
-    shapes.readline() # Skip header
+    shapes.readline()  # Skip header
     coords = OrderedDict()
     for lines in shapes:
         lines = lines.split()
@@ -52,12 +52,7 @@ def read_shapefile(shapefile_name):
 if __name__ == "__main__":
     # Usage: python layer_data_extractor.py shapefile.csv rasterfile(s)
     # shapefile.csv should have a header and the following data: LABEL LAT LON
-    # The rasterfile(s) can be globbed in the shell or provided one by one.
     from sys import argv
-    coords = read_shapefile(argv[1])
+    COORDS = read_shapefile(argv[1])
     print("Sample\t" + "\t".join(argv[2:]))
-    for ind in coords.keys():
-        print(ind, end="\t")
-        for files in argv[2:]:
-            print(get_value_from_point(files, coords[ind]), end="\t")
-        print()
+    get_value_from_point(argv[2], COORDS)
