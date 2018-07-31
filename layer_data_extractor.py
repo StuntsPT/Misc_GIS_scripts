@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with layer_data_extractor. If not, see <http://www.gnu.org/licenses/>.
 
+# Inspired by https://gis.stackexchange.com/a/46898
+
 from collections import OrderedDict
 from osgeo import gdal
 
@@ -50,7 +52,7 @@ def read_shapefile(shapefile_name):
 
 
 if __name__ == "__main__":
-    # Usage: python layer_data_extractor.py shapefile.csv rasterfile(s)
+    # Usage: python3 layer_data_extractor.py shapefile.csv rasterfile(s)
     # shapefile.csv should have a header and the following data: LABEL LAT LON
     from sys import argv
     COORDS = read_shapefile(argv[1])
