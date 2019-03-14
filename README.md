@@ -32,8 +32,11 @@ The output is sent to STDOUT.
 ```bash
 python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/BioClim1.bil ~/GIS_data/BioClim2.bil
 
-python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/*.bil
+python layer_data_extractor.py ~/shapefile.csv ~/GIS_data/BioClim3.bil > Extracted_data.csv  # To export to a file
 ```
+
+**Note:** In order to use `.bil` file, the respective `.hdr` files must be placed in the same directory.
+
 
 ### Requirements:
 
